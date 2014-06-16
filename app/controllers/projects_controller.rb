@@ -28,8 +28,10 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        LoadEventsWorker.perform_async(@project.id)
         format.html { redirect_to root_url, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
+
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }

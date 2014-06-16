@@ -1,3 +1,20 @@
+GIT
+  remote: git://github.com/nixme/jazz_hands.git
+  revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
+  branch: bring-your-own-debugger
+  specs:
+    jazz_hands (0.5.2)
+      awesome_print (~> 1.2)
+      coolline (>= 0.4.2)
+      hirb (~> 0.7.1)
+      pry (~> 0.9.12)
+      pry-doc (~> 0.4.6)
+      pry-git (~> 0.2.3)
+      pry-rails (~> 0.3.2)
+      pry-remote (>= 0.1.7)
+      pry-stack_explorer (~> 0.4.9)
+      railties (>= 3.0, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,7 +46,16 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    awesome_print (1.2.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    byebug (2.7.0)
+      columnize (~> 0.3)
+      debugger-linecache (~> 1.2)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -37,14 +63,26 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    columnize (0.8.9)
+    connection_pool (1.2.0)
+    coolline (0.4.3)
+    debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
+    diff-lcs (1.2.5)
+    diffy (3.0.4)
     erubis (2.7.0)
     execjs (2.2.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    grit (2.5.0)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+      posix-spawn (~> 0.3.6)
     haml (4.0.4)
       tilt
     hashie (2.1.2)
     hike (1.2.3)
+    hirb (0.7.2)
     i18n (0.6.9)
     jbuilder (2.1.0)
       activesupport (>= 3.0.0, < 5)
@@ -58,6 +96,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     minitest (5.3.4)
     multi_json (1.10.1)
@@ -82,7 +121,31 @@ GEM
       multi_json (~> 1.3)
       oauth2 (~> 0.9.3)
       omniauth (~> 1.2)
+    pg (0.17.0)
     polyglot (0.3.5)
+    posix-spawn (0.3.8)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-byebug (1.3.2)
+      byebug (~> 2.7)
+      pry (~> 0.9.12)
+    pry-doc (0.4.6)
+      pry (>= 0.9)
+      yard (>= 0.8)
+    pry-git (0.2.3)
+      diffy
+      grit
+      pry (>= 0.9.8)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    pry-stack_explorer (0.4.9.1)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -104,6 +167,9 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    redis (3.0.6)
+    redis-namespace (1.4.1)
+      redis (~> 3.0.4)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -116,9 +182,16 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sidekiq (2.17.0)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 1.0.0)
+      json
+      redis (>= 3.0.4)
+      redis-namespace (>= 1.3.1)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    slop (3.5.0)
     spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -129,12 +202,12 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.9)
     therubyracer (0.10.2)
       libv8 (~> 3.3.10)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timers (1.1.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -145,6 +218,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    yard (0.8.7.4)
 
 PLATFORMS
   ruby
@@ -152,16 +226,19 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   haml
+  jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
   octokit (~> 3.0)
   omniauth-github
+  pg
+  pry-byebug
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  sidekiq
   simple_form
   spring
-  sqlite3
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
