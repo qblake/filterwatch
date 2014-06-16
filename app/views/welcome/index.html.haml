@@ -5,3 +5,15 @@
 - else
   = link_to "Sign in with Github", "/auth/github"
 
+
+%h2 Projects
+%ul
+  - @user_projects.each do |project|
+    %li
+      = project.link
+      = link_to 'Destroy', project_path(project),
+            :confirm => 'Are you sure?', :method => :delete
+
+= simple_form_for @project do |f|
+  = f.input :link
+  = f.submit

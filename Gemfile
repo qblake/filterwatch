@@ -41,3 +41,4 @@ gem 'spring',        group: :development
 gem 'octokit', '~> 3.0'
 gem 'omniauth-github'
 gem 'haml'
+gem 'simple_form'
