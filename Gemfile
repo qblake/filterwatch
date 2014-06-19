@@ -42,6 +42,7 @@ gem 'omniauth-github'
 gem 'haml'
 gem 'simple_form'
 gem 'sidekiq'
+gem 'thin'
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
