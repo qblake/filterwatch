@@ -8,7 +8,7 @@ class LoadEventsWorker
     events.each do |event|
       event_hash = event.to_hash
       # binding.pry
-      Event.create!(data: event_hash)
+      Event.create!(data: event_hash, project_id: project_id)
     end
   end
 end
