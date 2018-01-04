@@ -27,7 +27,7 @@ class ProjectsControllerTest < ActionController::TestCase
   test 'should load events' do
     post :create, project: { link: @project.link }
     event = Event.last
-    assert_equal 'rails/rails', event.data['repo']['name']
+    assert_equal 'rails/rails', event.data['repo'][1][1]
   end
 
   test 'should show project' do

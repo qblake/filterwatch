@@ -19,6 +19,7 @@ development:
 test:
   <<: *default
   database: filterwatch_test
+  host: localhost
 
 production:
   <<: *default
